@@ -33,14 +33,21 @@ Docker
 Python (≥3.8)
 Conda/Mamba
 Java (≥11)
+
 ### 1. Wymagane narzędzia
-FastQC - Kontrola Jakości Sekwencjonowania
-Trimmomatic - Przycinanie Adapterów i Filtrowanie
-MultiQC - Agregacja Raportów Jakości
-STAR - Mapowanie Odczytów do Genomu
-SAMtools - Manipulacja Plików BAM
-BCFtools - Identyfikacja Wariantów
-bgzip & tabix - Kompresja i Indeksowanie VCF
+**FastQC** - Kontrola Jakości Sekwencjonowania
+
+**Trimmomatic** - Przycinanie Adapterów i Filtrowanie
+
+**MultiQC** - Agregacja Raportów Jakości
+
+**STAR** - Mapowanie Odczytów do Genomu
+
+**SAMtools** - Manipulacja Plików BAM
+
+**BCFtools** - Identyfikacja Wariantów
+
+**bgzip & tabix** - Kompresja i Indeksowanie VCF
 
 
 ### 2. Uruchomienie Pipeline Nextflow
