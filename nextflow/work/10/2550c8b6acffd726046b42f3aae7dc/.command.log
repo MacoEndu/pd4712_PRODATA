@@ -1,0 +1,11 @@
+TrimmomaticPE: Started with arguments:
+ -threads 5 SRR23609085_1.fastq.gz SRR23609085_2.fastq.gz SRR23609085_R1_trimmed.fastq.gz /dev/null SRR23609085_R2_trimmed.fastq.gz /dev/null ILLUMINACLIP:Nextera_transposase_adapters.fasta:2:15:5 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:20 MINLEN:50
+Using PrefixPair: 'AGATGTGTATAAGAGACAG' and 'CTGTCTCTTATACACATCT'
+Using Long Clipping Sequence: 'GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG'
+Using Long Clipping Sequence: 'TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG'
+Using Long Clipping Sequence: 'CTGTCTCTTATACACATCTCCGAGCCCACGAGAC'
+Using Long Clipping Sequence: 'CTGTCTCTTATACACATCTGACGCTGCCGACGA'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Quality encoding detected as phred33
+Input Read Pairs: 138604 Both Surviving: 60128 (43.38%) Forward Only Surviving: 65147 (47.00%) Reverse Only Surviving: 1077 (0.78%) Dropped: 12252 (8.84%)
+TrimmomaticPE: Completed successfully

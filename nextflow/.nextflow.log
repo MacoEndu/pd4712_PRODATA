@@ -1,0 +1,277 @@
+Jul-20 23:54:26.343 [main] DEBUG nextflow.cli.Launcher - $> nextflow run nextflow_workflow.nf -c nextflow.config --input 'raw/*' --outdir results --threads 5 --multiqc_title 'SARS-Cov 2' -profile docker
+Jul-20 23:54:26.541 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.04.6
+Jul-20 23:54:26.588 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/macoe/.nextflow/plugins; core-plugins: nf-amazon@2.15.0,nf-azure@1.16.0,nf-cloudcache@0.4.3,nf-codecommit@0.2.3,nf-console@1.2.1,nf-google@1.21.1,nf-k8s@1.0.0,nf-tower@1.11.4,nf-wave@1.12.1
+Jul-20 23:54:26.624 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-20 23:54:26.625 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-20 23:54:26.628 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Jul-20 23:54:26.644 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-20 23:54:26.678 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/macoe/PRODATA_project/nexflow/nextflow.config
+Jul-20 23:54:26.685 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /home/macoe/PRODATA_project/nexflow/nextflow.config
+Jul-20 23:54:26.690 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/macoe/PRODATA_project/nexflow/nextflow.config
+Jul-20 23:54:26.691 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/macoe/PRODATA_project/nexflow/nextflow.config
+Jul-20 23:54:26.759 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/macoe/.nextflow/secrets/store.json
+Jul-20 23:54:26.767 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@796d3c9f] - activable => nextflow.secret.LocalSecretsProvider@796d3c9f
+Jul-20 23:54:26.806 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `docker`
+Jul-20 23:54:27.631 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `docker`
+Jul-20 23:54:27.675 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [docker]
+Jul-20 23:54:27.710 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jul-20 23:54:27.732 [main] DEBUG nextflow.cli.CmdRun - Launching `nextflow_workflow.nf` [clever_mcnulty] DSL2 - revision: c99bc108b2
+Jul-20 23:54:27.734 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-20 23:54:27.734 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Jul-20 23:54:27.811 [main] DEBUG nextflow.Session - Session UUID: 1b94d71d-00be-4885-9262-503eab7f02fd
+Jul-20 23:54:27.811 [main] DEBUG nextflow.Session - Run name: clever_mcnulty
+Jul-20 23:54:27.812 [main] DEBUG nextflow.Session - Executor pool size: 20
+Jul-20 23:54:27.821 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-20 23:54:27.834 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=60; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-20 23:54:27.884 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.04.6 build 5954
+  Created: 01-07-2025 11:27 UTC (13:27 CEST)
+  System: Linux 5.15.167.4-microsoft-standard-WSL2
+  Runtime: Groovy 4.0.26 on OpenJDK 64-Bit Server VM 17.0.15-internal+0-adhoc..src
+  Encoding: UTF-8 (UTF-8)
+  Process: 1071614@WolbachiaLaptop [127.0.1.1]
+  CPUs: 20 - Mem: 7.6 GB (1.5 GB) - Swap: 2 GB (832 MB)
+Jul-20 23:54:27.922 [main] DEBUG nextflow.Session - Work-dir: /home/macoe/PRODATA_project/nexflow/work [ext2/ext3]
+Jul-20 23:54:27.923 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /home/macoe/PRODATA_project/nexflow/bin
+Jul-20 23:54:27.936 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-20 23:54:27.948 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-20 23:54:27.973 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Jul-20 23:54:27.998 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-20 23:54:28.015 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 21; maxThreads: 1000
+Jul-20 23:54:28.133 [main] DEBUG nextflow.Session - Session start
+Jul-20 23:54:28.136 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /home/macoe/PRODATA_project/nexflow/run_reports/trace.txt
+Jul-20 23:54:28.734 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-20 23:54:28.772 [main] INFO  nextflow.Nextflow - ===========================================
+ROZPOCZYNAM WORKFLOW NGS
+===========================================
+input: raw/*
+outdir: results
+ref_genome: ./reference_genome
+Analysis threads: 5
+multiqc_title: SARS-Cov 2
+params.adapters: /home/macoe/PRODATA_project/nexflow/adapters/Nextera_transposase_adapters.fasta
+
+Jul-20 23:54:28.965 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:TRIMMOMATIC` matches process TRIMMOMATIC
+Jul-20 23:54:28.982 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-20 23:54:28.982 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 23:54:28.990 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jul-20 23:54:28.999 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=20; memory=7.6 GB; capacity=20; pollInterval=100ms; dumpInterval=5m
+Jul-20 23:54:29.003 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Jul-20 23:54:29.027 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'TRIMMOMATIC': maxForks=0; fair=false; array=0
+Jul-20 23:54:29.038 [main] DEBUG nextflow.processor.TaskProcessor - Creating *combiner* operator for each param(s) at index(es): [1]
+Jul-20 23:54:29.075 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:FASTQC` matches process FASTQC
+Jul-20 23:54:29.079 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-20 23:54:29.080 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 23:54:29.096 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'FASTQC': maxForks=0; fair=false; array=0
+Jul-20 23:54:29.104 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:MULTIQC` matches process MULTIQC
+Jul-20 23:54:29.106 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-20 23:54:29.106 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 23:54:29.107 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'MULTIQC': maxForks=0; fair=false; array=0
+Jul-20 23:54:29.119 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-20 23:54:29.120 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 23:54:29.121 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'STAR_INDEX': maxForks=0; fair=false; array=0
+Jul-20 23:54:29.145 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:STAR_ALIGN` matches process STAR_ALIGN
+Jul-20 23:54:29.145 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-20 23:54:29.146 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 23:54:29.146 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'STAR_ALIGN': maxForks=0; fair=false; array=0
+Jul-20 23:54:29.152 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:SAMTOOLS_INDEX` matches process SAMTOOLS_INDEX
+Jul-20 23:54:29.153 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-20 23:54:29.153 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 23:54:29.155 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'SAMTOOLS_INDEX': maxForks=0; fair=false; array=0
+Jul-20 23:54:29.172 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:VARIANT_CALLING` matches process VARIANT_CALLING
+Jul-20 23:54:29.173 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-20 23:54:29.173 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 23:54:29.174 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'VARIANT_CALLING': maxForks=0; fair=false; array=0
+Jul-20 23:54:29.184 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jul-20 23:54:29.184 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jul-20 23:54:29.185 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'MERGE_VCF': maxForks=0; fair=false; array=0
+Jul-20 23:54:29.189 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: FASTQC, STAR_INDEX, VARIANT_CALLING, MERGE_VCF, MULTIQC, STAR_ALIGN, SAMTOOLS_INDEX, TRIMMOMATIC
+Jul-20 23:54:29.192 [main] DEBUG nextflow.Session - Igniting dataflow network (12)
+Jul-20 23:54:29.200 [PathVisitor-1] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: raw/; pattern: *_{1,2}.fastq.gz; options: [:]
+Jul-20 23:54:29.201 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > TRIMMOMATIC
+Jul-20 23:54:29.202 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > TRIMMOMATIC
+Jul-20 23:54:29.203 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > FASTQC
+Jul-20 23:54:29.205 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > MULTIQC
+Jul-20 23:54:29.206 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > STAR_INDEX
+Jul-20 23:54:29.206 [PathVisitor-2] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: ./reference_genome/; pattern: *.fasta; options: [checkIfExists:true]
+Jul-20 23:54:29.207 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > STAR_ALIGN
+Jul-20 23:54:29.208 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > SAMTOOLS_INDEX
+Jul-20 23:54:29.208 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > VARIANT_CALLING
+Jul-20 23:54:29.208 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > MERGE_VCF
+Jul-20 23:54:29.209 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_59723abc33217c77: /home/macoe/PRODATA_project/nexflow/nextflow_workflow.nf
+Jul-20 23:54:29.210 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jul-20 23:54:29.211 [main] DEBUG nextflow.Session - Session await
+Jul-20 23:54:29.557 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.561 [Task submitter] INFO  nextflow.Session - [10/2550c8] Submitted process > TRIMMOMATIC (SRR23609085)
+Jul-20 23:54:29.576 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.577 [Task submitter] INFO  nextflow.Session - [1a/5e08ed] Submitted process > TRIMMOMATIC (SRR23609084)
+Jul-20 23:54:29.591 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.593 [Task submitter] INFO  nextflow.Session - [c3/af67c6] Submitted process > TRIMMOMATIC (SRR23609086)
+Jul-20 23:54:29.602 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.603 [Task submitter] INFO  nextflow.Session - [a2/049f60] Submitted process > STAR_INDEX (STAR Index)
+Jul-20 23:54:29.618 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.619 [Task submitter] INFO  nextflow.Session - [81/245592] Submitted process > TRIMMOMATIC (SRR23609081)
+Jul-20 23:54:29.634 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.635 [Task submitter] INFO  nextflow.Session - [73/b30eec] Submitted process > TRIMMOMATIC (SRR23609082)
+Jul-20 23:54:29.651 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.652 [Task submitter] INFO  nextflow.Session - [50/6f4a72] Submitted process > TRIMMOMATIC (SRR23609080)
+Jul-20 23:54:29.660 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.663 [Task submitter] INFO  nextflow.Session - [75/9ab20b] Submitted process > TRIMMOMATIC (SRR23609079)
+Jul-20 23:54:29.674 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.675 [Task submitter] INFO  nextflow.Session - [d0/f28854] Submitted process > TRIMMOMATIC (SRR23609078)
+Jul-20 23:54:29.690 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.691 [Task submitter] INFO  nextflow.Session - [7e/1efccc] Submitted process > TRIMMOMATIC (SRR23609077)
+Jul-20 23:54:29.711 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:54:29.712 [Task submitter] INFO  nextflow.Session - [52/92f3d7] Submitted process > TRIMMOMATIC (SRR23609083)
+Jul-20 23:54:29.763 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: STAR_INDEX (STAR Index); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/a2/049f60ec4ad74314221324c1b26e35]
+Jul-20 23:54:29.764 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=60; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-20 23:54:29.798 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=60; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jul-20 23:55:03.925 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: TRIMMOMATIC (SRR23609081); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/81/24559248a1aaab065af884c6cad870]
+Jul-20 23:55:04.099 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: TRIMMOMATIC (SRR23609079); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/75/9ab20b77c992bc024c2acada915bd9]
+Jul-20 23:55:07.371 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:07.373 [Task submitter] INFO  nextflow.Session - [67/1be5b1] Submitted process > FASTQC (SRR23609081)
+Jul-20 23:55:07.386 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:07.387 [Task submitter] INFO  nextflow.Session - [9d/314692] Submitted process > FASTQC (SRR23609079)
+Jul-20 23:55:07.397 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:07.398 [Task submitter] INFO  nextflow.Session - [1b/4aec78] Submitted process > STAR_ALIGN (SRR23609079)
+Jul-20 23:55:07.768 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: TRIMMOMATIC (SRR23609085); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/10/2550c8b6acffd726046b42f3aae7dc]
+Jul-20 23:55:07.973 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: TRIMMOMATIC (SRR23609077); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/7e/1efcccd6364a61f37a23349354c225]
+Jul-20 23:55:07.984 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:07.988 [Task submitter] INFO  nextflow.Session - [3d/cb2af1] Submitted process > FASTQC (SRR23609085)
+Jul-20 23:55:08.536 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: TRIMMOMATIC (SRR23609083); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/52/92f3d78e06ee603dfc68e3f9bada96]
+Jul-20 23:55:08.555 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:08.556 [Task submitter] INFO  nextflow.Session - [41/caee85] Submitted process > FASTQC (SRR23609077)
+Jul-20 23:55:09.573 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:09.574 [Task submitter] INFO  nextflow.Session - [fd/72b755] Submitted process > FASTQC (SRR23609083)
+Jul-20 23:55:09.675 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: TRIMMOMATIC (SRR23609078); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/d0/f28854b1d7247f3d59ce14ebefab84]
+Jul-20 23:55:10.160 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: TRIMMOMATIC (SRR23609080); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/50/6f4a72747493c15b56cb92a30e4616]
+Jul-20 23:55:10.171 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:10.172 [Task submitter] INFO  nextflow.Session - [12/b93113] Submitted process > FASTQC (SRR23609078)
+Jul-20 23:55:10.191 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:10.191 [Task submitter] INFO  nextflow.Session - [fc/81e50b] Submitted process > FASTQC (SRR23609080)
+Jul-20 23:55:10.380 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: TRIMMOMATIC (SRR23609084); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/1a/5e08ed0b20eca727762c066653d6f9]
+Jul-20 23:55:10.858 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: TRIMMOMATIC (SRR23609082); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/73/b30eec3e8766ad5c20668b9dd80784]
+Jul-20 23:55:10.871 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:10.872 [Task submitter] INFO  nextflow.Session - [67/fce51e] Submitted process > FASTQC (SRR23609084)
+Jul-20 23:55:10.901 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:10.902 [Task submitter] INFO  nextflow.Session - [82/e5f2fd] Submitted process > FASTQC (SRR23609082)
+Jul-20 23:55:11.285 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: TRIMMOMATIC (SRR23609086); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/c3/af67c6b46926248c76a255faf03208]
+Jul-20 23:55:12.302 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:12.303 [Task submitter] INFO  nextflow.Session - [e6/f27a1c] Submitted process > FASTQC (SRR23609086)
+Jul-20 23:55:23.553 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 20; name: FASTQC (SRR23609083); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/fd/72b755776055f38c3b61e3bd724837]
+Jul-20 23:55:24.461 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 18; name: FASTQC (SRR23609077); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/41/caee85cd85cdb6815a44143489a43c]
+Jul-20 23:55:24.986 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 22; name: FASTQC (SRR23609078); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/12/b9311387c549adb27e48bc7c650e84]
+Jul-20 23:55:25.303 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 13; name: FASTQC (SRR23609081); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/67/1be5b16e8b93bb763534e8d6797f97]
+Jul-20 23:55:25.595 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 26; name: FASTQC (SRR23609084); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/67/fce51e71206555068823b2cbfd28fb]
+Jul-20 23:55:25.705 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16; name: FASTQC (SRR23609085); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/3d/cb2af1f7214410817b09cb2492a7f7]
+Jul-20 23:55:25.866 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 24; name: FASTQC (SRR23609080); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/fc/81e50bf6bf074815577b82a4393197]
+Jul-20 23:55:25.980 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: FASTQC (SRR23609079); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/9d/314692467bddada35a69cdc1d278ad]
+Jul-20 23:55:26.123 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 30; name: FASTQC (SRR23609086); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/e6/f27a1cb2cf82176c0aea738dbc949e]
+Jul-20 23:55:26.432 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 28; name: FASTQC (SRR23609082); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/82/e5f2fdcb597a4ef05b7f83ed1c8eba]
+Jul-20 23:55:27.449 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:27.449 [Task submitter] INFO  nextflow.Session - [9f/22c751] Submitted process > MULTIQC (MultiQC)
+Jul-20 23:55:35.881 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 32; name: MULTIQC (MultiQC); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/9f/22c751c144ad26521f432407ed26d7]
+Jul-20 23:55:58.638 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 14; name: STAR_ALIGN (SRR23609079); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/1b/4aec784c8fa02f3be1adf6624c2aba]
+Jul-20 23:55:58.654 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:58.656 [Task submitter] INFO  nextflow.Session - [3c/3dd99c] Submitted process > STAR_ALIGN (SRR23609081)
+Jul-20 23:55:59.673 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:59.674 [Task submitter] INFO  nextflow.Session - [05/60dc4e] Submitted process > VARIANT_CALLING (SRR23609079)
+Jul-20 23:55:59.695 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:55:59.696 [Task submitter] INFO  nextflow.Session - [af/57a56b] Submitted process > SAMTOOLS_INDEX (SRR23609079)
+Jul-20 23:56:02.398 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 33; name: SAMTOOLS_INDEX (SRR23609079); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/af/57a56b3697d2c4df61b1220d27cd6f]
+Jul-20 23:56:02.581 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 34; name: VARIANT_CALLING (SRR23609079); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/05/60dc4ec8ad756bcc1f367d96abbbc3]
+Jul-20 23:56:05.536 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 15; name: STAR_ALIGN (SRR23609081); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/3c/3dd99cb1417f222ebe318ebcd45188]
+Jul-20 23:56:05.544 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:56:05.544 [Task submitter] INFO  nextflow.Session - [d8/34b942] Submitted process > STAR_ALIGN (SRR23609085)
+Jul-20 23:56:06.554 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:56:06.554 [Task submitter] INFO  nextflow.Session - [af/93c839] Submitted process > VARIANT_CALLING (SRR23609081)
+Jul-20 23:56:06.569 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:56:06.569 [Task submitter] INFO  nextflow.Session - [d3/00545f] Submitted process > SAMTOOLS_INDEX (SRR23609081)
+Jul-20 23:56:08.838 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 36; name: VARIANT_CALLING (SRR23609081); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/af/93c83926633608ac53433629a2b944]
+Jul-20 23:56:08.951 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 35; name: SAMTOOLS_INDEX (SRR23609081); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/d3/00545fc94c030166cc5f16af2425b1]
+Jul-20 23:56:09.590 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 17; name: STAR_ALIGN (SRR23609085); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/d8/34b9428b27201afafd04a18610f63d]
+Jul-20 23:56:09.607 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:56:09.607 [Task submitter] INFO  nextflow.Session - [6a/61d5d4] Submitted process > STAR_ALIGN (SRR23609077)
+Jul-20 23:56:09.620 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:56:09.620 [Task submitter] INFO  nextflow.Session - [97/c0a998] Submitted process > VARIANT_CALLING (SRR23609085)
+Jul-20 23:56:09.649 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:56:09.649 [Task submitter] INFO  nextflow.Session - [c9/084b77] Submitted process > SAMTOOLS_INDEX (SRR23609085)
+Jul-20 23:56:12.060 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 37; name: SAMTOOLS_INDEX (SRR23609085); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/c9/084b77245527f5d8bbca10a298d498]
+Jul-20 23:56:12.219 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 38; name: VARIANT_CALLING (SRR23609085); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/97/c0a9987306996e48e4c51f642ef9ff]
+Jul-20 23:57:18.244 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 19; name: STAR_ALIGN (SRR23609077); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/6a/61d5d4e3f1bd5ff171d6926bdb9115]
+Jul-20 23:57:18.257 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:18.257 [Task submitter] INFO  nextflow.Session - [a2/1f9fa1] Submitted process > STAR_ALIGN (SRR23609083)
+Jul-20 23:57:19.270 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:19.270 [Task submitter] INFO  nextflow.Session - [d4/85db17] Submitted process > VARIANT_CALLING (SRR23609077)
+Jul-20 23:57:19.285 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:19.286 [Task submitter] INFO  nextflow.Session - [68/cdffef] Submitted process > SAMTOOLS_INDEX (SRR23609077)
+Jul-20 23:57:21.173 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 21; name: STAR_ALIGN (SRR23609083); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/a2/1f9fa1092d8cc073eb4ce391ff4206]
+Jul-20 23:57:21.185 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:21.186 [Task submitter] INFO  nextflow.Session - [e3/c850f9] Submitted process > STAR_ALIGN (SRR23609078)
+Jul-20 23:57:21.723 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 39; name: SAMTOOLS_INDEX (SRR23609077); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/68/cdffef651fb031ca4604b76e6aa310]
+Jul-20 23:57:21.736 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:21.736 [Task submitter] INFO  nextflow.Session - [b3/48814e] Submitted process > SAMTOOLS_INDEX (SRR23609083)
+Jul-20 23:57:21.749 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:21.750 [Task submitter] INFO  nextflow.Session - [33/746263] Submitted process > VARIANT_CALLING (SRR23609083)
+Jul-20 23:57:21.838 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 40; name: VARIANT_CALLING (SRR23609077); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/d4/85db17f6d31ad6f07457f5d4ea45c9]
+Jul-20 23:57:24.283 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 41; name: SAMTOOLS_INDEX (SRR23609083); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/b3/48814e26a31c5f947120b310c369c5]
+Jul-20 23:57:24.384 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 42; name: VARIANT_CALLING (SRR23609083); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/33/746263e272c775ac883bf7b01b3d3f]
+Jul-20 23:57:25.745 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 23; name: STAR_ALIGN (SRR23609078); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/e3/c850f91e077e93d207e4df405299ff]
+Jul-20 23:57:25.755 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:25.756 [Task submitter] INFO  nextflow.Session - [b1/066e33] Submitted process > STAR_ALIGN (SRR23609080)
+Jul-20 23:57:25.763 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:25.763 [Task submitter] INFO  nextflow.Session - [33/22e1e2] Submitted process > VARIANT_CALLING (SRR23609078)
+Jul-20 23:57:25.771 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:25.772 [Task submitter] INFO  nextflow.Session - [91/4e8818] Submitted process > SAMTOOLS_INDEX (SRR23609078)
+Jul-20 23:57:28.113 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 43; name: SAMTOOLS_INDEX (SRR23609078); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/91/4e88182b5f0241be140de197580f62]
+Jul-20 23:57:28.246 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 44; name: VARIANT_CALLING (SRR23609078); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/33/22e1e215549d6c8d66fe88654f06a8]
+Jul-20 23:57:29.210 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 25; name: STAR_ALIGN (SRR23609080); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/b1/066e334ba14a2790c8cdc11af30466]
+Jul-20 23:57:29.216 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:29.216 [Task submitter] INFO  nextflow.Session - [65/6a85ac] Submitted process > STAR_ALIGN (SRR23609084)
+Jul-20 23:57:30.223 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:30.224 [Task submitter] INFO  nextflow.Session - [9f/8c7f4c] Submitted process > SAMTOOLS_INDEX (SRR23609080)
+Jul-20 23:57:30.236 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:30.237 [Task submitter] INFO  nextflow.Session - [c1/766d97] Submitted process > VARIANT_CALLING (SRR23609080)
+Jul-20 23:57:32.454 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 45; name: SAMTOOLS_INDEX (SRR23609080); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/9f/8c7f4c187afa5e183d6683101b76f2]
+Jul-20 23:57:32.547 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 46; name: VARIANT_CALLING (SRR23609080); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/c1/766d9733cd37fa2c253ea5d6eed9ee]
+Jul-20 23:57:33.135 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 27; name: STAR_ALIGN (SRR23609084); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/65/6a85acc0c3d5044568980d2124fd1f]
+Jul-20 23:57:33.141 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:33.142 [Task submitter] INFO  nextflow.Session - [40/9b1ade] Submitted process > STAR_ALIGN (SRR23609082)
+Jul-20 23:57:34.150 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:34.150 [Task submitter] INFO  nextflow.Session - [5f/327bb0] Submitted process > SAMTOOLS_INDEX (SRR23609084)
+Jul-20 23:57:34.161 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:34.161 [Task submitter] INFO  nextflow.Session - [fc/76fc64] Submitted process > VARIANT_CALLING (SRR23609084)
+Jul-20 23:57:36.424 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 47; name: SAMTOOLS_INDEX (SRR23609084); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/5f/327bb0a3f58752936afe69ea9c8523]
+Jul-20 23:57:36.569 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 48; name: VARIANT_CALLING (SRR23609084); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/fc/76fc64e01704da4459d54218ee41df]
+Jul-20 23:57:36.754 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 29; name: STAR_ALIGN (SRR23609082); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/40/9b1adee70b05a164e8a51862016eed]
+Jul-20 23:57:36.761 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:36.762 [Task submitter] INFO  nextflow.Session - [e4/482adf] Submitted process > STAR_ALIGN (SRR23609086)
+Jul-20 23:57:36.773 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:36.773 [Task submitter] INFO  nextflow.Session - [bd/edae2a] Submitted process > SAMTOOLS_INDEX (SRR23609082)
+Jul-20 23:57:36.784 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:36.785 [Task submitter] INFO  nextflow.Session - [47/11dfe0] Submitted process > VARIANT_CALLING (SRR23609082)
+Jul-20 23:57:39.056 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 50; name: VARIANT_CALLING (SRR23609082); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/47/11dfe0c392c9cb2903626b576af17c]
+Jul-20 23:57:39.241 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 49; name: SAMTOOLS_INDEX (SRR23609082); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/bd/edae2a970d91bed8dbd973e21b128e]
+Jul-20 23:57:40.307 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 31; name: STAR_ALIGN (SRR23609086); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/e4/482adfcc3e6fdd0dc97ec5d9af5d9a]
+Jul-20 23:57:40.326 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:40.326 [Task submitter] INFO  nextflow.Session - [d8/d04d9c] Submitted process > SAMTOOLS_INDEX (SRR23609086)
+Jul-20 23:57:40.332 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:40.333 [Task submitter] INFO  nextflow.Session - [22/216ff3] Submitted process > VARIANT_CALLING (SRR23609086)
+Jul-20 23:57:42.397 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 52; name: VARIANT_CALLING (SRR23609086); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/22/216ff379a1c231c29494b45b97a217]
+Jul-20 23:57:42.414 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jul-20 23:57:42.415 [Task submitter] INFO  nextflow.Session - [8f/56ecb7] Submitted process > MERGE_VCF (Merge VCF)
+Jul-20 23:57:42.528 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 51; name: SAMTOOLS_INDEX (SRR23609086); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/d8/d04d9c9851757631d8c7db24696655]
+Jul-20 23:57:42.620 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 53; name: MERGE_VCF (Merge VCF); status: COMPLETED; exit: 0; error: -; workDir: /home/macoe/PRODATA_project/nexflow/work/8f/56ecb76e5766534ac61869a48f902d]
+Jul-20 23:57:42.624 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jul-20 23:57:42.722 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Jul-20 23:57:42.723 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-20 23:57:42.735 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Jul-20 23:57:42.737 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jul-20 23:57:42.763 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=53; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=19m 19s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=11; peakCpus=15; peakMemory=7 GB; ]
+Jul-20 23:57:42.763 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Jul-20 23:57:42.765 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Jul-20 23:57:43.440 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Jul-20 23:57:43.794 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-20 23:57:43.820 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jul-20 23:57:43.821 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

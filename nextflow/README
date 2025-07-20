@@ -1,0 +1,39 @@
+Pipeline NGS do Analizy SARS-CoV-2
+Pipeline Nextflow do analizy danych sekwencjonowania SARS-CoV-2 obejmujący kontrolę jakości, przycinanie odczytów, mapowanie i identyfikację wariantów.
+
+#Przegląd
+Ten pipeline przetwarza dane sekwencjonowania Illumina paired-end w celu identyfikacji wariantów w próbkach SARS-CoV-2. Workflow obejmuje:
+
+Kontrolę jakości za pomocą FastQC i MultiQC
+
+Przycinanie adapterów narzędziem Trimmomatic
+
+Mapowanie odczytów do genomu referencyjnego używając STAR
+
+Identyfikację wariantów za pomocą BCFtools
+
+Łączenie wariantów ze wszystkich próbek
+
+Dane
+Dane próbki: Biosample SAMN33344176
+
+Genom referencyjny: SARS-CoV-2 Wuhan-Hu-1 (NC_045512.2)
+
+Wymagania
+Nextflow (≥21.04)
+
+Docker (przy użyciu -profile docker)
+
+Pliki wejściowe: Pliki FASTQ paired-end (*_1.fastq.gz, *_2.fastq.gz)
+
+Użycie
+Szybki Start
+'''
+nextflow run nextflow_workflow.nf \
+  -c nextflow.config \
+  --input "raw/*" \
+  --outdir results \
+  --threads 5 \
+  --multiqc_title "SARS-CoV-2" \
+  -profile docker
+  '''

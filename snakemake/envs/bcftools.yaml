@@ -1,0 +1,10 @@
+name: variant_calling
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - python=3.10
+  - samtools
+  - bcftools
+  - htslib
+  - tabix

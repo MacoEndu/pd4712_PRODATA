@@ -1,0 +1,155 @@
+STAR version=2.7.10a
+STAR compilation time,server,dir=2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+STAR git: On branch master ; commit ae26add7ea1724f3281ec8abedb71bcff6a4ae73 ; diff files: CHANGES.md README.md RELEASEnotes.md doc/STARmanual.pdf extras/doc-latex/STARmanual.tex extras/doc-latex/convertParDefToLatexTable.awk extras/doc-latex/parametersDefault.tex extras/docker/Dockerfile source/VERSION 
+##### Command Line:
+STAR --runMode alignReads --genomeDir reference_genome/star_index --readFilesIn trimmed/SRR23609077_1_trimmed.fastq.gz trimmed/SRR23609077_2_trimmed.fastq.gz --readFilesCommand zcat --outFileNamePrefix mapped/SRR23609077_ --outSAMtype BAM SortedByCoordinate --runThreadN 2 --limitBAMsortRAM 2000000000
+##### Initial USER parameters from Command Line:
+outFileNamePrefix                 mapped/SRR23609077_
+###### All USER parameters from Command Line:
+runMode                       alignReads        ~RE-DEFINED
+genomeDir                     reference_genome/star_index     ~RE-DEFINED
+readFilesIn                   trimmed/SRR23609077_1_trimmed.fastq.gz   trimmed/SRR23609077_2_trimmed.fastq.gz        ~RE-DEFINED
+readFilesCommand              zcat        ~RE-DEFINED
+outFileNamePrefix             mapped/SRR23609077_     ~RE-DEFINED
+outSAMtype                    BAM   SortedByCoordinate        ~RE-DEFINED
+runThreadN                    2     ~RE-DEFINED
+limitBAMsortRAM               2000000000     ~RE-DEFINED
+##### Finished reading parameters from all sources
+
+##### Final user re-defined parameters-----------------:
+runMode                           alignReads   
+runThreadN                        2
+genomeDir                         reference_genome/star_index
+readFilesIn                       trimmed/SRR23609077_1_trimmed.fastq.gz   trimmed/SRR23609077_2_trimmed.fastq.gz   
+readFilesCommand                  zcat   
+limitBAMsortRAM                   2000000000
+outFileNamePrefix                 mapped/SRR23609077_
+outSAMtype                        BAM   SortedByCoordinate   
+
+-------------------------------
+##### Final effective command line:
+STAR   --runMode alignReads      --runThreadN 2   --genomeDir reference_genome/star_index   --readFilesIn trimmed/SRR23609077_1_trimmed.fastq.gz   trimmed/SRR23609077_2_trimmed.fastq.gz      --readFilesCommand zcat      --limitBAMsortRAM 2000000000   --outFileNamePrefix mapped/SRR23609077_   --outSAMtype BAM   SortedByCoordinate   
+----------------------------------------
+
+Number of fastq files for each mate = 1
+
+   Input read files for mate 1 :
+-rw-r--r-- 1 macoe macoe 2033513 Jul 20 23:49 trimmed/SRR23609077_1_trimmed.fastq.gz
+
+   readsCommandsFile:
+exec > "mapped/SRR23609077__STARtmp/tmp.fifo.read1"
+echo FILE 0
+zcat      "trimmed/SRR23609077_1_trimmed.fastq.gz"
+
+
+   Input read files for mate 2 :
+-rw-r--r-- 1 macoe macoe 2056801 Jul 20 23:49 trimmed/SRR23609077_2_trimmed.fastq.gz
+
+   readsCommandsFile:
+exec > "mapped/SRR23609077__STARtmp/tmp.fifo.read2"
+echo FILE 0
+zcat      "trimmed/SRR23609077_2_trimmed.fastq.gz"
+
+ParametersSolo: --soloCellFilterType CellRanger2.2 filtering parameters:  3000 0.99 10
+Finished loading and checking parameters
+Reading genome generation parameters:
+### STAR   --runMode genomeGenerate      --runThreadN 4   --genomeDir reference_genome/star_index   --genomeFastaFiles reference_genome/SARS-Cov2_reference_genome.fasta      --genomeSAindexNbases 6
+### GstrandBit=32
+versionGenome                 2.7.4a     ~RE-DEFINED
+genomeType                    Full     ~RE-DEFINED
+genomeFastaFiles              reference_genome/SARS-Cov2_reference_genome.fasta        ~RE-DEFINED
+genomeSAindexNbases           6     ~RE-DEFINED
+genomeChrBinNbits             18     ~RE-DEFINED
+genomeSAsparseD               1     ~RE-DEFINED
+genomeTransformType           None     ~RE-DEFINED
+genomeTransformVCF            -     ~RE-DEFINED
+sjdbOverhang                  0     ~RE-DEFINED
+sjdbFileChrStartEnd           -        ~RE-DEFINED
+sjdbGTFfile                   -     ~RE-DEFINED
+sjdbGTFchrPrefix              -     ~RE-DEFINED
+sjdbGTFfeatureExon            exon     ~RE-DEFINED
+sjdbGTFtagExonParentTranscripttranscript_id     ~RE-DEFINED
+sjdbGTFtagExonParentGene      gene_id     ~RE-DEFINED
+sjdbInsertSave                Basic     ~RE-DEFINED
+genomeFileSizes               262144   246703        ~RE-DEFINED
+Genome version is compatible with current STAR
+Number of real (reference) chromosomes= 1
+1	NC_045512.2	29903	0
+Started loading the genome: Sun Jul 20 23:49:29 2025
+
+Genome: size given as a parameter = 262144
+SA: size given as a parameter = 246703
+SAindex: size given as a parameter = 1
+Read from SAindex: pGe.gSAindexNbases=6  nSAi=5460
+nGenome=262144;  nSAbyte=246703
+GstrandBit=32   SA number of indices=59806
+Shared memory is not used for genomes. Allocated a private copy of the genome.
+Genome file size: 262144 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading Genome ... done! state: good=1 eof=0 fail=0 bad=0; loaded 262144 bytes
+SA file size: 246703 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading SA ... done! state: good=1 eof=0 fail=0 bad=0; loaded 246703 bytes
+Loading SAindex ... done: 23955 bytes
+Finished loading the genome: Sun Jul 20 23:49:29 2025
+
+alignIntronMax=alignMatesGapMax=0, the max intron size will be approximately determined by (2^winBinNbits)*winAnchorDistNbins=589824
+Created thread # 1
+Starting to map file # 0
+mate 1:   trimmed/SRR23609077_1_trimmed.fastq.gz
+mate 2:   trimmed/SRR23609077_2_trimmed.fastq.gz
+Thread #1 end of input stream, nextChar=-1
+BAM sorting: 86534 mapped reads
+BAM sorting bins genomic start loci:
+1	0	29539
+2	0	29539
+3	0	29539
+4	0	29539
+5	0	29539
+6	0	29570
+7	0	29570
+8	0	29570
+9	0	29570
+10	0	29570
+11	0	29570
+12	0	29570
+13	0	29570
+14	0	29570
+15	0	29570
+16	0	29570
+17	0	29570
+18	0	29570
+19	0	29570
+20	0	29570
+21	0	29570
+22	0	29570
+23	0	29570
+24	0	29570
+25	0	29652
+26	0	29680
+27	0	29680
+28	0	29680
+29	0	29680
+30	0	29680
+31	0	29680
+32	0	29680
+33	0	29680
+34	0	29680
+35	0	29680
+36	0	29680
+37	0	29680
+38	0	29680
+39	0	29721
+40	0	29768
+41	0	29768
+42	0	29768
+43	0	29768
+44	0	29768
+45	0	29768
+46	0	29768
+47	0	29769
+48	0	29770
+Completed: thread #0
+Completed: thread #1
+Joined thread # 1
+Jul 20 23:51:28 ..... started sorting BAM
+Max memory needed for sorting = 32619783
+ALL DONE!

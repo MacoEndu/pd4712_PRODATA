@@ -1,0 +1,61 @@
+STAR version=2.7.10a
+STAR compilation time,server,dir=2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+STAR git: On branch master ; commit ae26add7ea1724f3281ec8abedb71bcff6a4ae73 ; diff files: CHANGES.md README.md RELEASEnotes.md doc/STARmanual.pdf extras/doc-latex/STARmanual.tex extras/doc-latex/convertParDefToLatexTable.awk extras/doc-latex/parametersDefault.tex extras/docker/Dockerfile source/VERSION 
+##### Command Line:
+STAR --runMode genomeGenerate --genomeDir reference_genome/star_index --genomeFastaFiles reference_genome/SARS-Cov2_reference_genome.fasta --genomeSAindexNbases 6 --runThreadN 4
+##### Initial USER parameters from Command Line:
+###### All USER parameters from Command Line:
+runMode                       genomeGenerate        ~RE-DEFINED
+genomeDir                     reference_genome/star_index     ~RE-DEFINED
+genomeFastaFiles              reference_genome/SARS-Cov2_reference_genome.fasta        ~RE-DEFINED
+genomeSAindexNbases           6     ~RE-DEFINED
+runThreadN                    4     ~RE-DEFINED
+##### Finished reading parameters from all sources
+
+##### Final user re-defined parameters-----------------:
+runMode                           genomeGenerate   
+runThreadN                        4
+genomeDir                         reference_genome/star_index
+genomeFastaFiles                  reference_genome/SARS-Cov2_reference_genome.fasta   
+genomeSAindexNbases               6
+
+-------------------------------
+##### Final effective command line:
+STAR   --runMode genomeGenerate      --runThreadN 4   --genomeDir reference_genome/star_index   --genomeFastaFiles reference_genome/SARS-Cov2_reference_genome.fasta      --genomeSAindexNbases 6
+----------------------------------------
+
+Number of fastq files for each mate = 1
+ParametersSolo: --soloCellFilterType CellRanger2.2 filtering parameters:  3000 0.99 10
+Finished loading and checking parameters
+--genomeDir directory created: reference_genome/star_index/
+Jul 19 14:37:35 ... starting to generate Genome files
+reference_genome/SARS-Cov2_reference_genome.fasta : chr # 0  "NC_045512.2" chrStart: 0
+Chromosome sequence lengths: 
+NC_045512.2	29903
+Genome sequence total length = 29903
+Genome size with padding = 262144
+Estimated genome size with padding and SJs: total=genome+SJ=201262144 = 262144 + 201000000
+GstrandBit=32
+Number of SA indices: 59806
+Jul 19 14:37:35 ... starting to sort Suffix Array. This may take a long time...
+Number of chunks: 4;   chunks size limit: 159480 bytes
+Jul 19 14:37:35 ... sorting Suffix Array chunks and saving them to disk...
+Writing 4648 bytes into reference_genome/star_index//SA_3 ; empty space on disk = 967626719232 bytes ... done
+Writing 159056 bytes into reference_genome/star_index//SA_1 ; empty space on disk = 967626711040 bytes ... done
+Writing 157120 bytes into reference_genome/star_index//SA_2 ; empty space on disk = 967626551296 bytes ... done
+Writing 157624 bytes into reference_genome/star_index//SA_0 ; empty space on disk = 967626391552 bytes ... done
+Jul 19 14:37:35 ... loading chunks from disk, packing SA...
+Jul 19 14:37:35 ... finished generating suffix array
+Jul 19 14:37:35 ... generating Suffix Array index
+Jul 19 14:37:35 ... completed Suffix Array index
+Jul 19 14:37:35 ... writing Genome to disk ...
+Writing 262144 bytes into reference_genome/star_index//Genome ; empty space on disk = 967626715136 bytes ... done
+SA size in bytes: 246703
+Jul 19 14:37:35 ... writing Suffix Array to disk ...
+Writing 246703 bytes into reference_genome/star_index//SA ; empty space on disk = 967626452992 bytes ... done
+Jul 19 14:37:35 ... writing SAindex to disk
+Writing 8 bytes into reference_genome/star_index//SAindex ; empty space on disk = 967626203136 bytes ... done
+Writing 56 bytes into reference_genome/star_index//SAindex ; empty space on disk = 967626203136 bytes ... done
+Writing 23891 bytes into reference_genome/star_index//SAindex ; empty space on disk = 967626203136 bytes ... done
+Jul 19 14:37:35 ..... finished successfully
+DONE: Genome generation, EXITING

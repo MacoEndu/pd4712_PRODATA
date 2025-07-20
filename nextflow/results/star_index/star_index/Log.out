@@ -1,0 +1,61 @@
+STAR version=2.7.11b
+STAR compilation time,server,dir=2024-04-14T23:10:25+00:00 <place not set in Debian package>
+##### Command Line:
+/usr/lib/rna-star/bin/STAR-avx2 --runMode genomeGenerate --genomeDir ./star_index --genomeFastaFiles SARS-Cov2_reference_genome.fasta --genomeSAindexNbases 6 --runThreadN 5
+##### Initial USER parameters from Command Line:
+###### All USER parameters from Command Line:
+runMode                       genomeGenerate        ~RE-DEFINED
+genomeDir                     ./star_index     ~RE-DEFINED
+genomeFastaFiles              SARS-Cov2_reference_genome.fasta        ~RE-DEFINED
+genomeSAindexNbases           6     ~RE-DEFINED
+runThreadN                    5     ~RE-DEFINED
+##### Finished reading parameters from all sources
+
+##### Final user re-defined parameters-----------------:
+runMode                           genomeGenerate   
+runThreadN                        5
+genomeDir                         ./star_index
+genomeFastaFiles                  SARS-Cov2_reference_genome.fasta   
+genomeSAindexNbases               6
+
+-------------------------------
+##### Final effective command line:
+/usr/lib/rna-star/bin/STAR-avx2   --runMode genomeGenerate      --runThreadN 5   --genomeDir ./star_index   --genomeFastaFiles SARS-Cov2_reference_genome.fasta      --genomeSAindexNbases 6
+----------------------------------------
+
+Number of fastq files for each mate = 1
+ParametersSolo: --soloCellFilterType CellRanger2.2 filtering parameters:  3000 0.99 10
+Finished loading and checking parameters
+--genomeDir directory created: ./star_index/
+Jul 20 23:54:29 ... starting to generate Genome files
+SARS-Cov2_reference_genome.fasta : chr # 0  "NC_045512.2" chrStart: 0
+Chromosome sequence lengths: 
+NC_045512.2	29903
+Genome sequence total length = 29903
+Genome size with padding = 262144
+Estimated genome size with padding and SJs: total=genome+SJ=201262144 = 262144 + 201000000
+GstrandBit=32
+Number of SA indices: 59806
+Jul 20 23:54:29 ... starting to sort Suffix Array. This may take a long time...
+Number of chunks: 5;   chunks size limit: 119608 bytes
+Jul 20 23:54:29 ... sorting Suffix Array chunks and saving them to disk...
+Writing 118416 bytes into ./star_index//SA_0 ; empty space on disk = 957271068672 bytes ... done
+Writing 117168 bytes into ./star_index//SA_1 ; empty space on disk = 957270941696 bytes ... done
+Writing 118208 bytes into ./star_index//SA_2 ; empty space on disk = 957270822912 bytes ... done
+Writing 116248 bytes into ./star_index//SA_3 ; empty space on disk = 957270704128 bytes ... done
+Writing 8408 bytes into ./star_index//SA_4 ; empty space on disk = 957270585344 bytes ... done
+Jul 20 23:54:29 ... loading chunks from disk, packing SA...
+Jul 20 23:54:29 ... finished generating suffix array
+Jul 20 23:54:29 ... generating Suffix Array index
+Jul 20 23:54:29 ... completed Suffix Array index
+Jul 20 23:54:29 ... writing Genome to disk ...
+Writing 262144 bytes into ./star_index//Genome ; empty space on disk = 957271056384 bytes ... done
+SA size in bytes: 246703
+Jul 20 23:54:29 ... writing Suffix Array to disk ...
+Writing 246703 bytes into ./star_index//SA ; empty space on disk = 957270794240 bytes ... done
+Jul 20 23:54:29 ... writing SAindex to disk
+Writing 8 bytes into ./star_index//SAindex ; empty space on disk = 957270544384 bytes ... done
+Writing 56 bytes into ./star_index//SAindex ; empty space on disk = 957270544384 bytes ... done
+Writing 23891 bytes into ./star_index//SAindex ; empty space on disk = 957270544384 bytes ... done
+Jul 20 23:54:29 ..... finished successfully
+DONE: Genome generation, EXITING

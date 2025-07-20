@@ -1,0 +1,10 @@
+
+/// MultiQC 🔍 v1.30
+
+       file_search | Search path: /home/macoe/PRODATA_project/snakemake/trimmedQC
+
+            fastqc | Found 20 reports
+
+     write_results | Data        : multiqc/multiqc_report_trimmed_data
+     write_results | Report      : multiqc/multiqc_report_trimmed.html
+           multiqc | MultiQC complete

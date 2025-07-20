@@ -1,0 +1,267 @@
+# Pipeline NGS do analizy SARS-CoV-2
+
+# Konfiguracja pliku yaml zawierającego listę próbek i odczytów
+configfile: "config.yaml"
+
+# Definicje funkcji do zwracania plików FastQC surowych i przyciętych
+# Funkcje te zwracają listę plików zip z raportami FastQC dla wszystkich próbek i odczytów
+def get_fastqc_files(wildcards):
+    return expand("rawQC/{sample}_{read}_fastqc.zip", sample=config["SAMPLES"], read=config["READS"])
+
+def get_trimmed_files(wildcards):
+    return expand("trimmedQC/{sample}_{read}_trimmed_fastqc.zip", sample=config["SAMPLES"], read=config["READS"])
+
+
+# Reguła główna definiująca wszystkie pliki wynikowe
+rule all:
+    input:
+        # Raporty FastQC surowych odczytów
+        expand("rawQC/{sample}_{read}_fastqc.zip", 
+            sample=config["SAMPLES"],
+            read=config["READS"]),
+        # Raporty FastQC odczytów po przycięciu
+        expand("trimmedQC/{sample}_{read}_trimmed_fastqc.zip", 
+            sample=config["SAMPLES"],
+            read=config["READS"]),
+        # Pliki BAM i ich indeksy
+        expand("mapped/{sample}_Aligned.sortedByCoord.out.bam", sample=config["SAMPLES"]),
+        expand("mapped/{sample}_Aligned.sortedByCoord.out.bam.bai", sample=config["SAMPLES"]),
+        # Pliki z analizą pokrycia głębokości odczytów
+        expand("depth/{sample}_depth.txt", sample=config["SAMPLES"]),
+        # Pliki wariantów VCF (surowe i filtrowane)
+        expand("variants/{sample}_variants.vcf", sample=config["SAMPLES"]),
+        expand("variants/{sample}_filtered_variants.vcf", sample=config["SAMPLES"]),
+        # Scalony plik VCF ze wszystkimi próbkami
+        "variants/merged_filtered_variants.vcf",
+        # Raporty MultiQC dla surowych i przyciętych danych
+        "multiqc/multiqc_report_raw.html",
+        "multiqc/multiqc_report_trimmed.html"
+
+
+# Reguła generująca raport MultiQC dla surowych danych
+rule multiqc_raw:
+    input:
+        get_fastqc_files
+    output:
+        "multiqc/multiqc_report_raw.html"
+    conda:
+        "envs/multiqc.yaml"
+    log:
+        "logs/report_multiqc_raw.log"
+    shell:
+        "multiqc rawQC -o multiqc -n multiqc_report_raw --force  2> {log}"
+
+
+# Reguła generująca raport MultiQC dla przyciętych danych
+rule multiqc_trimmed:
+    input:
+        get_trimmed_files
+    output:
+        "multiqc/multiqc_report_trimmed.html"
+    conda:
+        "envs/multiqc.yaml"
+    log:
+        "logs/report_multiqc_trimmed.log"
+    shell:
+        "multiqc trimmedQC -o multiqc -n multiqc_report_trimmed --force  2> {log}"
+
+
+# Reguła wykonująca FastQC na surowych plikach fastq
+rule fastqc_raw:
+    input:
+        fastq_file="raw/{sample}_{read}.fastq.gz"
+    output:
+        zip_file="rawQC/{sample}_{read}_fastqc.zip",
+        html_file="rawQC/{sample}_{read}_fastqc.html"
+    conda:
+        "envs/fastqc.yaml"
+    # Liczba wątków rośnie przy kolejnych próbach dla lepszej wydajności
+    threads: lambda wildcards, attempt: min(attempt * 2, 8)
+    log:
+        "logs/{sample}_{read}_fastq.log"
+    shell:
+        "fastqc -t {threads} -outdir rawQC {input.fastq_file}  2> {log}"
+
+
+# Reguła wykonująca FastQC na przyciętych plikach fastq
+rule fastqc_trimmed:
+    input:
+        fastq_file="trimmed/{sample}_{read}_trimmed.fastq.gz"
+    output:
+        zip_file="trimmedQC/{sample}_{read}_trimmed_fastqc.zip",
+        html_file="trimmedQC/{sample}_{read}_trimmed_fastqc.html"
+    conda:
+        "envs/fastqc.yaml"
+    threads: lambda wildcards, attempt: min(attempt * 2, 8)
+    log:
+        "logs/{sample}_{read}_fastq_trimmed.log"
+    shell:
+        "fastqc -t {threads} -outdir trimmedQC {input.fastq_file}  2> {log}"
+
+
+# Reguła przycinająca adaptery i filtrowanie jakości (Trimmomatic)
+rule trimmomatic:
+    input:
+        r1="raw/{sample}_1.fastq.gz",
+        r2="raw/{sample}_2.fastq.gz"
+    output:
+        R1_trimmed="trimmed/{sample}_1_trimmed.fastq.gz",
+        R2_trimmed="trimmed/{sample}_2_trimmed.fastq.gz"
+    conda:
+        "envs/trimmomatic.yaml"
+    log:
+        "logs/{sample}_trimmomatic.log"
+    params:
+        adapter="adapters/Nextera_transposase_adapters.fa"
+    # Liczba wątków rośnie przy ponownych próbach
+    threads: 
+        lambda wildcards, attempt: min(attempt * 4, 12)
+    shell:
+        """
+        trimmomatic PE -threads {threads} \
+        {input.r1} {input.r2} \
+        {output.R1_trimmed} /dev/null \
+        {output.R2_trimmed} /dev/null \
+        ILLUMINACLIP:{params.adapter}:2:15:5 \
+        LEADING:10 TRAILING:10 \
+        SLIDINGWINDOW:4:20 MINLEN:50 \
+        2> logs/{wildcards.sample}_trimmomatic.log
+        """
+
+
+# Reguła budująca indeks genomu referencyjnego dla STAR
+rule star_index:
+    input:
+        genome="reference_genome/SARS-Cov2_reference_genome.fasta",
+    output:
+        directory("reference_genome/star_index")
+    conda:
+        "envs/star.yaml"
+    log:
+        "logs/star_index.log"
+    # Liczba wątków rośnie przy ponownych próbach
+    threads: lambda wildcards, attempt: min(attempt * 4, 12)
+    params:
+        sjdbOverhang=99
+    shell:
+        """
+        STAR --runMode genomeGenerate \
+            --genomeDir reference_genome/star_index \
+            --genomeFastaFiles reference_genome/SARS-Cov2_reference_genome.fasta \
+            --genomeSAindexNbases 6 \
+            --runThreadN {threads}
+        """
+
+# Reguła mapowania odczytów do genomu referencyjnego przy użyciu STAR
+rule star_align:
+    input:
+        r1="trimmed/{sample}_1_trimmed.fastq.gz",
+        r2="trimmed/{sample}_2_trimmed.fastq.gz",
+        index="reference_genome/star_index"
+    output:
+        bam="mapped/{sample}_Aligned.sortedByCoord.out.bam",
+        log="mapped/{sample}_Log.final.out"
+    conda:
+        "envs/star.yaml"
+    log:
+        "logs/{sample}_star_align.log"  
+    params:
+        prefix="mapped/{sample}_"
+    threads: lambda wildcards, attempt: min(attempt * 2, 8)
+    shell:
+        """
+        STAR --runMode alignReads \
+        --genomeDir {input.index} \
+        --readFilesIn {input.r1} {input.r2} \
+        --readFilesCommand zcat \
+        --outFileNamePrefix {params.prefix} \
+        --outSAMtype BAM SortedByCoordinate \
+        --runThreadN {threads} \
+        --limitBAMsortRAM 2000000000
+        """
+
+
+# Reguła indeksowania plików BAM (samtools index)
+rule samtools_index:
+    input:
+        bam="mapped/{sample}_Aligned.sortedByCoord.out.bam"
+    output:
+        bai="mapped/{sample}_Aligned.sortedByCoord.out.bam.bai"
+    conda:
+        "envs/samtools.yaml"
+    log:
+        "logs/{sample}_samtools_index.log"
+    threads: lambda wildcards, attempt: min(attempt * 2, 8)
+    shell:
+        """
+        samtools index -@ {threads} {input.bam} {output.bai} 2> {log}
+        """
+
+# Reguła analizująca głębokość pokrycia (samtools depth)
+rule depth_analysis:
+    input:
+        bam="mapped/{sample}_Aligned.sortedByCoord.out.bam",
+        bai="mapped/{sample}_Aligned.sortedByCoord.out.bam.bai",
+    output:
+        depth="depth/{sample}_depth.txt",
+    conda:
+        "envs/samtools.yaml"
+    log:
+        "logs/{sample}_depth_analysis.log"
+    threads: lambda wildcards, attempt: min(attempt * 2, 8)
+    shell:
+        """
+        samtools depth -a {input.bam} > {output.depth} 2> {log}
+        """
+
+# Reguła identyfikacji wariantów za pomocą bcftools
+rule variant_calling:
+    input:
+        bam="mapped/{sample}_Aligned.sortedByCoord.out.bam",
+        bai="mapped/{sample}_Aligned.sortedByCoord.out.bam.bai",
+        genome="reference_genome/SARS-Cov2_reference_genome.fasta"
+    output:
+        raw_vcf="variants/{sample}_variants.vcf",
+        filtered_vcf="variants/{sample}_filtered_variants.vcf"
+    conda:
+         "envs/bcftools.yaml"
+    log:
+        "logs/{sample}_variant_calling.log"
+    threads: lambda wildcards, attempt: min(attempt * 2, 8)
+    params:
+        min_depth=10,
+        min_qual=20
+    shell:
+         """
+        bcftools mpileup -f {input.genome} {input.bam} | \
+        bcftools call -mv -v --ploidy 1 -o {output.raw_vcf} 2> {log}
+        bcftools filter -i 'DP>={params.min_depth} && QUAL>={params.min_qual}' \
+        {output.raw_vcf} > {output.filtered_vcf} 2>> {log}
+        """
+
+# Reguła scalająca pliki VCF ze wszystkich próbek
+rule merge_vcf:
+    input:
+        vcf_files=expand("variants/{sample}_filtered_variants.vcf", sample=config["SAMPLES"]),
+        genome="reference_genome/SARS-Cov2_reference_genome.fasta"
+    output:
+        merged_vcf="variants/merged_filtered_variants.vcf",
+    conda:
+        "envs/bcftools.yaml"
+    log:
+        "logs/merge_vcf.log"
+    threads: 4
+    shell:
+        """
+        for vcf in {input.vcf_files}; do
+            if [ ! -f "$vcf.gz" ]; then
+                bgzip -c "$vcf" > "$vcf.gz"
+                bcftools index "$vcf.gz"
+            fi
+        done
+        
+        bcftools merge -m none -0 \
+            variants/*_filtered_variants.vcf.gz \
+            -o {output.merged_vcf} -O v \
+            2> {log}
+            """
