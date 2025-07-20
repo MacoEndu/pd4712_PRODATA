@@ -1,8 +1,0 @@
-	/usr/lib/rna-star/bin/STAR-avx2 --runMode alignReads --genomeDir star_index --readFilesIn SRR23609086_R1_trimmed.fastq.gz SRR23609086_R2_trimmed.fastq.gz --readFilesCommand zcat --outFileNamePrefix SRR23609086_ --outSAMtype BAM SortedByCoordinate --runThreadN 5 --limitBAMsortRAM 2000000000
-	STAR version: 2.7.11b   compiled: 2024-04-14T23:10:25+00:00 <place not set in Debian package>
-Jul 20 23:57:36 ..... started STAR run
-Jul 20 23:57:36 ..... loading genome
-Jul 20 23:57:36 ..... started mapping
-Jul 20 23:57:39 ..... finished mapping
-Jul 20 23:57:39 ..... started sorting BAM
-Jul 20 23:57:40 ..... finished successfully
